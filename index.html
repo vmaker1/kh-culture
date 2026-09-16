@@ -730,6 +730,29 @@ th{background:var(--brand-p);color:var(--brand-d)}
 @keyframes fadeimg{from{opacity:0}to{opacity:1}}
 .poster .grain{z-index:2}
 
+
+/* 회원 혜택 카드 */
+.perks{display:flex;flex-direction:column;gap:9px}
+.perk{display:flex;align-items:center;gap:13px;background:var(--bg);border:1px solid var(--line);
+  border-radius:var(--r);padding:13px 15px}
+.pk-i{width:42px;height:42px;border-radius:12px;color:#fff;display:flex;align-items:center;
+  justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;letter-spacing:-.03em}
+.perk b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.02em}
+.perk em{font-style:normal;font-size:13px;color:var(--sub);line-height:1.5}
+
+
+.vc-perk{font-size:12.5px;color:var(--brand);background:var(--brand-p);padding:5px 10px;
+  border-radius:var(--r-sm);margin-bottom:11px;font-weight:600;display:inline-block}
+
+
+.perks{display:flex;flex-direction:column;gap:9px}
+.perk{display:flex;align-items:center;gap:13px;background:var(--bg);border:1px solid var(--line);
+  border-radius:var(--r);padding:13px 15px}
+.pk-i{width:42px;height:42px;border-radius:12px;color:#fff;display:flex;align-items:center;
+  justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;letter-spacing:-.03em}
+.perk b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.02em}
+.perk em{font-style:normal;font-size:13px;color:var(--sub);line-height:1.5}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -739,7 +762,7 @@ th{background:var(--brand-p);color:var(--brand-d)}
   <div class="top-in">
     <button class="brand" data-go="home"><b>경향 문화</b><span>SINCE 1946</span></button>
     <button class="hsearch" data-go="browse">
-      <span class="hs-ic" data-ic="search"></span><span>공연·전시를 검색해 보세요</span>
+      <span class="hs-ic" data-ic="search"></span><span>전시를 검색해 보세요</span>
     </button>
     <div class="top-r">
       <div class="pts"><i>P</i><span id="ptsTop">1,240</span></div>
@@ -765,22 +788,22 @@ th{background:var(--brand-p);color:var(--brand-d)}
     <div class="cats" id="cats"></div>
 
     <button class="notice" data-toast="공지사항으로 이동합니다" style="width:100%;text-align:left">
-      <span class="nb">공지</span><span>창간 80주년 기념 〈정동, 사진 속 80년〉 10월 6일 개막 · 회원 무료</span><span class="na">›</span>
+      <span class="nb">공지</span><span>연간 회원 혜택 추가 · 교환권 구매 시 기념 엽서 또는 오디오가이드 무료 대여</span><span class="na">›</span>
     </button>
 
     <div class="block">
-      <div class="shd"><h3>장르별 랭킹</h3><button class="more" data-go="browse">전체보기</button></div>
+      <div class="shd"><h3>이달의 전시</h3><button class="more" data-go="browse">전체보기</button></div>
       <div class="stabs" id="rankTabs"></div>
       <div class="rail fb" id="rankRail"></div>
     </div>
 
     <div class="block">
-      <div class="shd"><h3>오픈 예정</h3><button class="more" data-go="browse">전체보기</button></div>
+      <div class="shd"><h3>개막 예정</h3><button class="more" data-go="browse">전체보기</button></div>
       <div id="openList"></div>
     </div>
 
     <div class="block">
-      <div class="shd"><h3>지금 할인 중</h3><span class="more" style="color:var(--hot)">회원가</span></div>
+      <div class="shd"><h3>마감 임박</h3><span class="more" style="color:var(--hot)">서두르세요</span></div>
       <div id="dealList"></div>
     </div>
 
@@ -803,18 +826,18 @@ th{background:var(--brand-p);color:var(--brand-d)}
 
     <div class="bnr">
       <div class="bi"><h4>80년의 안목을 구독하세요</h4>
-        <p>연간 회원은 15% 할인과 특가석 우선 예매, 아카이브전 무료 입장을 받습니다.</p></div>
+        <p>연 6만원이 6만원어치로 돌아옵니다. 평일 교환권 3매와 해설 프로그램을 이용하세요.</p></div>
       <button class="btn" style="background:var(--hot)" data-go="join">멤버십 가입하기</button>
     </div>
   </section>
 
   <section class="view" id="v-browse">
-    <p class="eyebrow">공연 · 전시 통합 검색</p>
+    <p class="eyebrow">전시 검색</p>
     <h2 class="sec">둘러보기</h2>
     <p class="sec-note" style="margin-bottom:26px">협회 회원사와 제휴 미술관의 전시를 모았습니다. 1단계는 전시 분야로 운영합니다.</p>
     <div class="filters">
       <div class="tools">
-        <input id="q" type="search" placeholder="공연명, 공간, 지역으로 검색" aria-label="검색">
+        <input id="q" type="search" placeholder="전시명, 미술관, 지역으로 검색" aria-label="검색">
         <select id="sortBy" aria-label="정렬">
           <option value="soon">마감 임박순</option><option value="rate">평점순</option>
           <option value="new">시작일순</option><option value="name">이름순</option>
@@ -962,19 +985,17 @@ var EVENTS=SEED.filter(function(r){return r[0]==='전시'}).map(function(r,i){re
 
 var PLANS=[
   {k:'month',n:'월간',p:5000,u:'매월 결제 · 연 60,000원',rib:'',
-   f:['월 4,000P 적립 (80% 환원)','제휴 전시 10% 할인','회원 전용 관람 시간','6개월 유지 시 교환권 1매']},
+   f:['월 4,000P 적립 (80% 환원)','평일 20% · 주말 5% 교환권','회원 전용 관람 시간','6개월 유지 시 교환권 1매']},
   {k:'year',n:'연간',p:60000,u:'연 1회 결제 · 전액 환원',rib:'가장 많이 선택',
-   f:['60,000P 즉시 적립 (100% 환원)','평일 교환권 3매 구매 가능','우선 예약','해설 프로그램 연 3~4회']},
+   f:['60,000P 즉시 적립 (100% 환원)','평일 교환권 3매 구매 가능','교환권 구매 시 엽서 또는 오디오가이드','우선 예약 · 회원 전용 관람 시간','해설 프로그램 연 3~4회']},
   {k:'prem',n:'프리미엄',p:100000,u:'연 1회 결제 · 10% 보너스',rib:'',
-   f:['110,000P 적립','교환권 최대 5매','동반 1인 혜택','특별 교환권 우선 안내']},
-  {k:'group',n:'단체',p:50000,u:'30인 이상 · 1인 기준',rib:'기업·기관',
-   f:['1인 65,000P 지급','30인 이상 전용 해설 회차','평일 단체 관람 배정','세금계산서 발행']}
+   f:['110,000P 적립','교환권 최대 5매','엽서 + 오디오가이드 모두 제공','동반 1인 혜택','응모 가중치 2배']},
 ];
 
 /* 교환권 3종 */
 var VTYPE={
   weekday:{n:'평일 교환권',off:20,p:19200,c:'#128F5E',d:'월~금 사용 · 가장 저렴합니다'},
-  weekend:{n:'주말 교환권',off:10,p:21600,c:'#2E6BB8',d:'토·일·공휴일 사용 가능'},
+  weekend:{n:'주말·휴일 교환권',off:5,p:22800,c:'#2E6BB8',d:'토·일·공휴일 사용 가능'},
   early:{n:'특별 교환권',off:40,p:14400,c:'#D94452',d:'개막 후 40일 이내 · 전시당 1매'}
 };
 
@@ -1014,6 +1035,7 @@ var BENEFITS=[
  {t:'큐레이터 토크 · 유영국展',m:'09.30 (수) 11:00 · 정원 30명 · 응모 1,000P',c:15000,g:'전시',d:false},
  {t:'전시 도록 · 오윤展',m:'현장 수령 · 1회 10,000P 한도',c:10000,g:'전시',d:false},
  {t:'개막 프리뷰 응모 · 정동, 사진 속 80년',m:'10.05 (월) · 20명 추첨 · 낙첨 시 50% 환급',c:1000,g:'전시',d:false},
+ {t:'오디오가이드 대여',m:'연간 회원 무료 · 일반 회원 3,000P · 현장 수령',c:3000,g:'전시',d:false},
  {t:'아트숍 굿즈 · 제휴 미술관 전체',m:'현장 포인트 결제 · 엽서 1장 무료 제공',c:10000,g:'전시',d:true}];
 
 function $(s){return document.querySelector(s)}
@@ -1088,7 +1110,7 @@ function renderDbar(src,when){
 
 function card(e){
   var c=gc(e.genre)[0];
-  var pw=Math.round(e.price*0.8/100)*100, pe=Math.round(e.price*0.9/100)*100;
+  var pw=Math.round(e.price*0.8/100)*100, pe=Math.round(e.price*0.95/100)*100;
   return '<button class="item" data-detail="'+e.id+'">'+posterHTML(e)+
     '<div class="item-b"><div class="vn">'+esc(e.venue)+' · '+esc(e.region)+'</div>'+
     '<h4>'+esc(e.title)+'</h4><div class="m">'+md(e.start)+' — '+md(e.end)+'</div>'+
@@ -1097,6 +1119,150 @@ function card(e){
     '<span class="off-r wk"><b>주말·휴일</b>10% · '+comma(pe)+'P</span></div>'+
     '<div class="foot">'+stars(e.rating,c)+(e.reviewCount?'<span class="cnt">후기 '+e.reviewCount+'</span>':'')+
     '<span class="disc">정가 '+comma(e.price)+'원</span></div></div></button>';
+}
+
+
+/* ══ 아이콘 세트 ══════════════════ */
+var IC=(function(){
+  function w(p,f){return '<svg viewBox="0 0 24 24" fill="'+(f||'none')+'" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
+  return {
+    home:w('<path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/>'),
+    search:w('<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>'),
+    ticket:w('<path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h13A2.5 2.5 0 0 1 21 8.5v1a2.5 2.5 0 0 0 0 5v1a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 15.5v-1a2.5 2.5 0 0 0 0-5z"/><path d="M14 6v12" stroke-dasharray="2 2.5"/>'),
+    book:w('<path d="M5 4.5h11a2 2 0 0 1 2 2V20l-6.5-3L5 20z"/>'),
+    chat:w('<path d="M20 13.5a3.5 3.5 0 0 1-3.5 3.5H10l-4.5 3.5V17H5.5A3.5 3.5 0 0 1 2 13.5v-6A3.5 3.5 0 0 1 5.5 4h11A3.5 3.5 0 0 1 20 7.5z"/>'),
+    gift:w('<path d="M4 11h16v9H4z"/><path d="M2.5 7.5h19V11h-19z"/><path d="M12 7.5V20"/><path d="M12 7.5S10.5 4 8.5 4a2 2 0 0 0 0 3.5zM12 7.5S13.5 4 15.5 4a2 2 0 0 1 0 3.5z"/>'),
+    grid:w('<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>'),
+    mask:w('<path d="M4 6.5h16v5a8 8 0 0 1-8 8 8 8 0 0 1-8-8z"/><circle cx="9" cy="11" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="11" r="1.1" fill="currentColor" stroke="none"/>'),
+    mic:w('<rect x="9" y="3" width="6" height="10.5" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/>'),
+    note:w('<path d="M9 18V5.5l10-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>'),
+    frame:w('<rect x="3.5" y="4.5" width="17" height="13" rx="1.5"/><path d="m7 14 3.5-4 2.5 3 2-2.5 3 3.5"/><path d="M12 17.5V21"/>'),
+    dance:w('<circle cx="12" cy="4.5" r="2"/><path d="M12 7v6m0 0-3.5 7M12 13l3.5 7M6.5 9.5 12 8l5.5 1.5"/>'),
+    drum:w('<ellipse cx="12" cy="8" rx="7.5" ry="3"/><path d="M4.5 8v7c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V8"/><path d="m8 4 3 3M16 4l-3 3"/>'),
+    pin:w('<path d="M12 21s6.5-6 6.5-11a6.5 6.5 0 1 0-13 0C5.5 15 12 21 12 21z"/><circle cx="12" cy="10" r="2.4"/>'),
+    speak:w('<path d="M12 4.5v15"/><path d="M12 7.5a5 5 0 0 1 0 9"/><path d="M12 4.5 6.5 8H3.5v8h3L12 19.5z"/>'),
+    pass:w('<rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18"/><path d="M7 14.5h4"/>'),
+    user:w('<circle cx="12" cy="8" r="3.6"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/>'),
+    board:w('<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M9 4.5v15M15 4.5v15"/>')
+  };
+})();
+
+/* ══ 캐러셀 ══════════════════════ */
+var caroI=0,caroT=null,CARO=[];
+function renderCaro(){
+  CARO=EVENTS.filter(function(e){return e.curated&&e.note}).slice(0,6);
+  if(!CARO.length)return;
+  $('#caro').innerHTML=CARO.map(function(e,i){
+    return '<div class="slide'+(i===0?' on':'')+'" data-si="'+i+'">'+posterHTML(e)+
+      '<div class="sc"><span class="st">문화부 선정</span><h2>'+esc(e.title)+'</h2>'+
+      '<div class="sm">'+esc(e.venue)+' · '+md(e.start)+' — '+md(e.end)+'</div>'+
+      '<div class="sw">'+esc(e.note.length>62?e.note.slice(0,62)+'…':e.note)+'</div></div></div>'}).join('')+
+    '<span class="caro-n mono"><span id="caroN">1</span> / '+CARO.length+'</span>';
+  $('#caroDots').innerHTML=CARO.map(function(_,i){return '<i class="'+(i?'':'on')+'" data-slide="'+i+'"></i>'}).join('');
+  $$('#caroDots i').forEach(function(d){d.style.background=d.classList.contains('on')?'var(--ink)':'var(--line)'});
+  clearInterval(caroT);caroT=setInterval(function(){goSlide((caroI+1)%CARO.length)},5200);
+}
+function goSlide(n){
+  caroI=n;
+  $$('#caro .slide').forEach(function(s,i){s.classList.toggle('on',i===n)});
+  $$('#caroDots i').forEach(function(d,i){d.classList.toggle('on',i===n);d.style.background=(i===n?'var(--ink)':'var(--line)')});
+  var el=$('#caroN');if(el)el.textContent=n+1;
+}
+
+/* ══ 카테고리 ════════════════════ */
+var CATS=[['전시','전체 전시','frame'],['평일','평일 관람','pin'],['해설','기획자 해설','speak'],
+          ['교환권','교환권','pass'],['굿즈','아트숍','gift']];
+function renderCats(){
+  $('#cats').innerHTML=CATS.map(function(c){
+    var MAP={'전시':['#128F5E','data-go="browse"'],'평일':['#2E6BB8','data-go="browse"'],
+             '해설':['#9B4FB0','data-go="benefit"'],'교환권':['#E08600','data-go="benefit"'],
+             '굿즈':['#E15A3E','data-go="benefit"']};
+    var M=MAP[c[0]]||['var(--ink-2)','data-toast="준비 중입니다"'];
+    return '<button class="cat" '+M[1]+'><span class="ci" style="background:'+M[0]+'">'+IC[c[2]]+'</span>'+
+           '<span class="cn">'+c[1]+'</span></button>'}).join('');
+}
+
+/* ══ 랭킹 ════════════════════════ */
+var rankG='전시';
+function renderRank(){
+  var gs=['전시'];
+  $('#rankTabs').innerHTML=gs.map(function(g){
+    var on=rankG===g;
+    return '<button class="stab" data-rank="'+g+'" aria-pressed="'+on+'"'+(on?' style="background:'+gc(g)[0]+'"':'')+'>'+g+'</button>'}).join('');
+  var L=EVENTS.filter(function(e){return e.genre===rankG})
+    .sort(function(a,b){return (b.rating*10+b.reviewCount/10)-(a.rating*10+a.reviewCount/10)}).slice(0,8);
+  $('#rankRail').innerHTML=L.map(function(e,i){
+    var c=gc(e.genre)[0],dp=Math.round(e.price*0.8/100)*100;
+    return '<button class="rk" data-detail="'+e.id+'">'+
+      '<div class="pw">'+posterHTML(e)+'<span class="num">'+(i+1)+'</span></div>'+
+      '<h5>'+esc(e.title)+'</h5><div class="m">'+esc(e.venue)+'</div>'+
+      '<div class="pr"><s>'+comma(e.price)+'</s><span style="color:'+c+'">'+comma(dp)+'P</span></div></button>'}).join('');
+  var r=$('#rankRail');if(r)r.scrollLeft=0;
+}
+
+/* ══ 오픈 예정 ═══════════════════ */
+function renderOpen(){
+  var L=EVENTS.filter(function(e){return new Date(e.start)>new Date()})
+    .sort(function(a,b){return a.start<b.start?-1:1}).slice(0,5);
+  if(!L.length){L=EVENTS.slice().sort(function(a,b){return b.start<a.start?-1:1}).slice(0,5)}
+  $('#openList').innerHTML=L.map(function(e,i){
+    var d=Math.ceil((new Date(e.start)-Date.now())/864e5);
+    var tags='';
+    if(i===0)tags+='<span class="tg hot">HOT</span>';
+    if(e.discount===100)tags+='<span class="tg only">회원무료</span>';
+    if(d>0&&d<=30)tags+='<span class="tg new">개막임박</span>';
+    return '<button class="orow" data-detail="'+e.id+'"><span class="ot">'+
+      md(e.start)+'<b>'+(d>0?'D-'+d:'진행중')+'</b></span>'+
+      '<span class="oi"><h5>'+esc(e.title)+'</h5><span class="m">'+esc(e.venue)+'</span></span>'+
+      '<span class="tags">'+tags+'</span></button>'}).join('');
+}
+
+/* ══ 마감 임박 ═══════════════════ */
+var DEALS=[];
+function renderDeals(){
+  DEALS=EVENTS.filter(function(e){var d=dl(e.end);return d>0&&d<=45})
+    .sort(function(a,b){return dl(a.end)-dl(b.end)}).slice(0,4);
+  if(!DEALS.length)DEALS=EVENTS.slice(0,4);
+  var now=Date.now();
+  DEALS.forEach(function(e){e._exp=new Date(e.end+'T23:59:59').getTime()});
+  $('#dealList').innerHTML=DEALS.map(function(e,i){
+    var c=gc(e.genre)[0],dp=Math.round(e.price*0.8/100)*100;
+    return '<button class="drow" data-detail="'+e.id+'"><span class="th">'+posterHTML(e)+'</span>'+
+      '<span class="di"><span class="timer">마감임박 <b id="tm'+i+'">--</b></span>'+
+      '<h5>'+esc(e.title)+'</h5><span class="m">'+esc(e.venue)+' · ~'+md(e.end)+'</span>'+
+      '<span class="pz"><span class="off" style="color:'+c+'">평일 20%</span>'+
+      '<s>'+comma(e.price)+'</s><span class="now">'+comma(dp)+'P</span></span></span></button>'}).join('');
+  tickDeals();
+}
+function tickDeals(){
+  DEALS.forEach(function(e,i){
+    var el=document.getElementById('tm'+i);if(!el)return;
+    var s=Math.max(0,Math.floor((e._exp-Date.now())/1000));
+    var d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),ss=s%60;
+    el.textContent=(d?'D-'+d+' ':'')+('0'+h).slice(-2)+':'+('0'+m).slice(-2)+':'+('0'+ss).slice(-2);
+  });
+}
+setInterval(tickDeals,1000);
+
+/* ══ 키워드 ══════════════════════ */
+var KWS=[['🖼','평일 오전 한산한','평일'],['🎨','거장의 회고전','회고'],['📷','사진과 아카이브','사진'],
+         ['🪑','공예와 디자인','공예'],['🌿','서울 밖 미술관','지역'],['⏳','이번 달 마감','마감']];
+var kwSel=0;
+function renderKws(){
+  $('#kws').innerHTML=KWS.map(function(k,i){
+    return '<button class="kw" data-kw="'+i+'" aria-pressed="'+(kwSel===i)+'">'+k[0]+' '+k[1]+'</button>'}).join('');
+  var mode=KWS[kwSel][2],L;
+  if(mode==='마감') L=EVENTS.filter(function(e){var d=dl(e.end);return d>0&&d<=45}).sort(function(a,b){return dl(a.end)-dl(b.end)});
+  else if(mode==='지역') L=EVENTS.filter(function(e){return e.region!=='서울'});
+  else if(mode==='사진') L=EVENTS.filter(function(e){return /사진|아카이브/.test(e.title)});
+  else if(mode==='공예') L=EVENTS.filter(function(e){return /공예|도자|텍스타일|건축/.test(e.title)});
+  else if(mode==='회고') L=EVENTS.filter(function(e){return /회고|유영국|오윤|김윤신|방혜자|이성자/.test(e.title)});
+  else L=EVENTS.filter(function(e){return e.partner});
+  if(!L.length)L=EVENTS.slice(0,8);
+  $('#kwRail').innerHTML=L.slice(0,8).map(function(e){
+    return '<button class="rk" data-detail="'+e.id+'">'+
+      '<div class="pw">'+posterHTML(e)+'</div><h5>'+esc(e.title)+'</h5>'+
+      '<div class="m">'+esc(e.venue)+'</div></button>'}).join('');
 }
 
 function renderHome(){
@@ -1125,7 +1291,7 @@ function renderBrowse(){
     return dl(a.end)-dl(b.end)});
   $('#browseCount').textContent=L.length+'건';
   $('#browseGrid').innerHTML=L.length?L.map(card).join('')
-    :'<p style="color:var(--mist);font-size:17px;padding:34px 4px">찾는 공연이 없습니다. 다른 이름으로 검색하거나 필터를 풀어보세요.</p>';
+    :'<p style="color:var(--mist);font-size:17px;padding:34px 4px">찾는 전시가 없습니다. 다른 이름으로 검색하거나 필터를 풀어보세요.</p>';
 }
 function renderStubs(){
   $('#stubs').innerHTML=STUBS.map(function(s){
@@ -1199,6 +1365,7 @@ function renderWallet(){
       return '<div class="vcard'+(urgent?' soon':'')+'"><span class="vc-l" style="background:'+T.c+'"></span>'+
         '<div class="vc-b"><div class="vc-t">'+esc(v.event||'제휴 전시')+'</div>'+
         '<div class="vc-m">'+T.n+' · '+T.off+'% 할인</div>'+
+        '<div class="vc-perk">엽서 1매 또는 오디오가이드 무료</div>'+
         '<div class="vc-f">'+
         (urgent?'<span class="vc-dday">D-'+d+'</span>':'<span class="vc-exp">~'+v.exp.slice(2).replace(/-/g,'.')+'</span>')+
         '<button class="vc-btn" data-use-v="'+v.id+'">사용하기</button></div></div></div>'}).join('')+'</div>'+
@@ -1215,7 +1382,8 @@ function renderWallet(){
         '<button class="btn" data-use="'+i+'" '+(can?'style="background:'+c+'"':'disabled')+'>'+
         (b.d?'현장 결제':(S.points>=b.c?'신청':'포인트 부족'))+'</button></div>'}).join('')+
       '<div class="foot">기획자 해설 12,000P · 큐레이터 토크 15,000P · 응모권 1,000P (월 5회)<br>'+
-      '굿즈는 현장에서 1회 10,000P까지 결제할 수 있으며 배송은 제공하지 않습니다.</div>';
+      '굿즈는 현장에서 1회 10,000P까지 결제할 수 있으며 배송은 제공하지 않습니다.<br>'+
+      '연간 회원은 교환권 구매 시 기념 엽서 또는 오디오가이드 무료 대여 중 하나를 받습니다.</div>';
   }
   else{
     var used=WALLET.filter(function(v){return v.used});
@@ -1325,7 +1493,7 @@ function doneHTML(){
   var p=planOf(S.plan);
   var bars='';for(var i=0;i<52;i++) bars+='<i style="height:'+(40+Math.round(Math.random()*60))+'%"></i>';
   return '<div class="done"><div class="seal-big">발권</div>'+
-   '<h2>멤버십이 발급되었습니다</h2><p>주문번호 '+orderNo()+' · '+p.n+' 멤버십</p>'+'<div class="notice" style="max-width:430px;margin:0 auto 22px"><span class="nb">적립</span><span>'+(p.p?comma(p.k==="prem"?110000:(p.k==="group"?65000:p.p)):"0")+'P가 지급되었습니다</span></div>'+
+   '<h2>멤버십이 발급되었습니다</h2><p>주문번호 '+orderNo()+' · '+p.n+' 멤버십</p>'+'<div class="notice" style="max-width:430px;margin:0 auto 22px"><span class="nb">적립</span><span>'+(p.p?comma(p.k==="prem"?110000:p.p):"0")+'P가 지급되었습니다</span></div>'+
    '<div class="mcard"><div class="mh"><span class="mb">경향 문화</span><span class="mt">'+p.n.toUpperCase()+'</span></div>'+
    '<div class="mn">4821 0093 7715</div>'+
    '<div class="mf"><span>홍길동</span><span>VALID 2027.08</span></div>'+
@@ -1420,7 +1588,7 @@ function renderAdmin(tab){
 function openDetail(id){
   var e=EVENTS.filter(function(x){return x.id===id})[0]; if(!e)return;
   var c=gc(e.genre)[0];
-  var pw=Math.round(e.price*0.8/100)*100, pe=Math.round(e.price*0.9/100)*100;
+  var pw=Math.round(e.price*0.8/100)*100, pe=Math.round(e.price*0.95/100)*100;
   var owned=WALLET.filter(function(v){return !v.used&&v.event===e.title}).length>0;
   $('#modalBox').innerHTML=
     '<h3>'+esc(e.title)+'</h3><p class="sub">'+esc(e.venue)+' · '+md(e.start)+' — '+md(e.end)+'</p>'+
@@ -1430,12 +1598,17 @@ function openDetail(id){
      :'<div class="buy"><div class="buy-i"><h4 style="color:#128F5E">평일 교환권</h4><p>월~금 사용 · 20% 할인</p></div>'+
       '<div class="buy-p"><s>'+comma(e.price)+'원</s><b>'+comma(pw)+'P</b></div>'+
       '<button class="btn" data-buyv="'+e.id+'|weekday|'+pw+'" '+(S.points>=pw?'style="background:#128F5E"':'disabled')+'>'+(S.points>=pw?'구매':'포인트 부족')+'</button></div>'+
-      '<div class="buy"><div class="buy-i"><h4 style="color:#2E6BB8">주말·휴일 교환권</h4><p>토·일·공휴일 사용 · 10% 할인</p></div>'+
+      '<div class="buy"><div class="buy-i"><h4 style="color:#2E6BB8">주말·휴일 교환권</h4><p>토·일·공휴일 사용 · 5% 할인</p></div>'+
       '<div class="buy-p"><s>'+comma(e.price)+'원</s><b>'+comma(pe)+'P</b></div>'+
       '<button class="btn" data-buyv="'+e.id+'|weekend|'+pe+'" '+(S.points>=pe?'style="background:#2E6BB8"':'disabled')+'>'+(S.points>=pe?'구매':'포인트 부족')+'</button></div>')+
-    '<label style="margin-top:20px">회원 혜택</label>'+
-    '<div class="offs"><span class="off-r">엽서 1장 무료 제공</span>'+
-    '<span class="off-r wk">아트숍 포인트 결제 가능</span></div>'+
+    '<label style="margin-top:20px">연간 회원 혜택 · 교환권 구매 시 택 1</label>'+
+    '<div class="perks">'+
+    '<div class="perk"><span class="pk-i" style="background:#128F5E">엽서</span>'+
+    '<div><b>기념 엽서 1매 증정</b><em>아트숍에서 회원증 제시 · 전시당 1회</em></div></div>'+
+    '<div class="perk"><span class="pk-i" style="background:#9B4FB0">음성</span>'+
+    '<div><b>오디오가이드 무료 대여</b><em>수신기 대여료 면제 · 보증금 별도</em></div></div>'+
+    '</div>'+
+    '<div class="offs" style="margin-top:12px"><span class="off-r wk">아트숍 포인트 결제 가능 (1회 10,000P)</span></div>'+
     '<div class="foot">할인 교환권이라 구매 후 7일이 지나면 환불이 어렵습니다.<br>기간 내 미사용 시 20%가 포인트로 환급됩니다.</div>'+
     '<div class="modal-f"><button class="btn dark-ghost" data-close>닫기</button></div>';
   $('#scrim').classList.add('on');
@@ -1455,7 +1628,7 @@ function openTicket(vid){
     '<div class="tk-nm">김민아</div>'+
     '<div class="tk-row"><span>교환권</span><b style="color:'+T.c+'">'+T.n+' · '+T.off+'% 할인</b></div>'+
     '<div class="tk-row"><span>전시</span><b>'+esc(v.event||'제휴 전시')+'</b></div>'+
-    '<div class="tk-row"><span>엽서</span><b style="color:var(--green)">1장 제공</b></div>'+
+    '<div class="tk-row"><span>회원 혜택</span><b style="color:var(--green)">기념 엽서 1매</b></div>'+'<div class="tk-row"><span>오디오가이드</span><b style="color:#9B4FB0">무료 대여</b></div>'+
     '<div class="tk-clock mono" id="tkClock">--</div>'+
     (bad?'<div class="tk-bad">'+bad+'</div>'
         :'<div class="tk-guide">매표소에서 이 화면을 보여주세요</div>'+
@@ -1484,7 +1657,7 @@ function doneTicket(){
   $('#modalBox').innerHTML='<div class="done" style="padding:10px 0 0">'+
     '<div class="seal-big" style="width:76px;height:76px;font-size:16px">확인</div>'+
     '<h2 style="font-size:25px">사용 완료</h2>'+
-    '<p>티켓과 엽서를 받아 입장하세요</p>'+
+    '<p>티켓과 엽서를 받아 입장하세요<br>오디오가이드는 안내데스크에서 대여하세요</p>'+
     '<div class="modal-f" style="justify-content:center"><button class="btn" data-close>닫기</button></div></div>';
   renderWallet(); toast('교환권이 사용되었습니다');
 }
